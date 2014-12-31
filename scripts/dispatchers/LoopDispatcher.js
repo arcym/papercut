@@ -1,18 +1,13 @@
 var Loop = require("<root>/scripts/systems/Loop")
 var LoopActions = require("<root>/scripts/actions/LoopActions")
 
-var LoopDispatcher = {
-    initiate: function() {
-        LoopDispatcher.retick()
-    },
-    tick: function() {
-        LoopActions.Tick((Date.now() - Loop.time) / 1000)
+var LoopDispatcher = function() {
+    (function tick() {
+        Loop.time = (Date.now() - Loop.time) / 1000;
+        LoopActions.Tick(Loop.time)
         Loop.time = Date.now()
-        LoopDispatcher.retick()
-    },
-    retick: function() {
-        window.requestAnimationFrame(LoopDispatcher.tick)
-    }
+        window.requestAnimationFrame(tick)
+    })()
 }
 
 module.exports = LoopDispatcher
