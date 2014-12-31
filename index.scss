@@ -3,10 +3,12 @@
     margin: 0px;
 }
 
-:root
-{
-    background-color: #111;
-    font-family: monospace;
-}
+@import "./styles/references/Colors.scss";
 
 @import "./styles/components/GameFrame.scss";
+
+:root
+{
+    background-color: $black;
+    font-family: monospace;
+}
