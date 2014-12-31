@@ -3,6 +3,7 @@
     margin: 0px;
 }
 
+@import "./styles/references/Fonts.scss";
 @import "./styles/references/Colors.scss";
 
 @import "./styles/components/GameFrame.scss";
@@ -10,5 +11,5 @@
 :root
 {
     background-color: $black;
-    font-family: monospace;
+    font-family: goldfish, monospace;
 }
