@@ -6,6 +6,9 @@
     height: 1rem;
     position: absolute;
     
+    transition-duration: 0.4s;
+    transition-property: left, top;
+    
     border-radius: 0.1rem;
     background-color: $red;
 }
