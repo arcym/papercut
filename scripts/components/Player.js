@@ -12,8 +12,8 @@ var Player = React.createClass({
     },
     renderStyles: function() {
         return {
-            top: this.state.player.y + "rem",
-            left: this.state.player.x + "rem"
+            left: this.state.player.x + "rem",
+            top: this.state.player.y + "rem"
         }
     },
     renderClasses: function() {

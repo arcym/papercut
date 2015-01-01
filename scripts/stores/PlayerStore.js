@@ -8,8 +8,8 @@ var PlayerStore = Reflux.createStore({
     init: function() {
         this.listenToMany(KeyboardActions)
     },
-    getInitialState: function() {
-        return this.data;
+    getData: function() {
+        return this.data
     },
     onStrokeKey: function() {
         this.data.x += 1
