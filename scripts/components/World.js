@@ -1,4 +1,5 @@
 var WorldStore = require("<root>/scripts/stores/WorldStore")
+var WorldTile = require("<root>/scripts/components/WorldTile")
 
 var World = React.createClass({
     mixins: [
@@ -22,7 +23,14 @@ var World = React.createClass({
         return "world"
     },
     renderWorldTiles: function() {
-        
+        var renderings = new Array()
+        for(var key in this.state.world.tiles) {
+            var tile = this.state.world.tiles[key]
+            renderings.push(
+                <WorldTile key={key} tile={tile}/>
+            )
+        }
+        return renderings
     }
 })
 

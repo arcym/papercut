@@ -5,15 +5,15 @@ var WorldStore = Reflux.createStore({
         tiles: [
             {
                 x: 0,
-                y: 19
+                y: 14
             },
             {
                 x: 1,
-                y: 19
+                y: 14
             },
             {
                 x: 2,
-                y: 19
+                y: 14
             }
         ]
     },
