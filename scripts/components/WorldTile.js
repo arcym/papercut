@@ -14,7 +14,8 @@ var WorldTile = React.createClass({
     renderStyles: function() {
         return {
             left: this.props.tile.x + "rem",
-            top: this.props.tile.y + "rem"
+            top: this.props.tile.y + "rem",
+            backgroundColor: this.props.tile.t == 1 ? "#B5E61D" : "#00A2E8"
         }
     },
     renderClasses: function() {
