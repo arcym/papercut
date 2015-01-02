@@ -9,6 +9,9 @@ var InputConfigStore = Reflux.createStore({
     },
     getData: function() {
         return this.data
+    },
+    parseKeyboardInput: function(keycode) {
+        return this.data.keyboard[keycode]
     }
 })
 
