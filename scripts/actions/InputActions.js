@@ -1,5 +1,5 @@
 var InputActions = Reflux.createActions([
-    "Stroke", "Unstroke"
+    "StrokeInput", "UnstrokeInput"
 ])
 
 module.exports = InputActions

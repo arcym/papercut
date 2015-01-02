@@ -2,8 +2,15 @@ var InputActions = require("<root>/scripts/actions/InputActions")
 
 var InputStore = Reflux.createStore({
     data: {
-        //strokes: {} <-copy methods from KeyboardInputStore
-        actions: {}
+        inputs: {},
+        bindings: {
+            keyboard: {
+                38: "up",
+                40: "down",
+                37: "left",
+                39: "right"
+            }
+        }
     },
     getData: function() {
         return this.data
@@ -11,11 +18,19 @@ var InputStore = Reflux.createStore({
     init: function() {
         this.listenToMany(InputActions)
     },
-    addAction: function(event, action) {
-        actions[event] = action
+    onStrokeInput: function(keycode) {
+        this.data.inputs[keycode] = true
+        this.retrigger()
     },
-    removeAction: function() {
-        //?!
+    onUnstrokeInput: function(keycode) {
+        delete this.data.inputs[keycode]
+        this.retrigger()
+    },
+    hasStrokedInput: function(keycode) {
+        return this.data.inputs[keycode] == true
+    },
+    getKeyboardBindings: function() {
+        return this.data.bindings.keyboard
     }
 })
 
