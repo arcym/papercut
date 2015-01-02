@@ -2,15 +2,7 @@ var InputActions = require("<root>/scripts/actions/InputActions")
 
 var InputStore = Reflux.createStore({
     data: {
-        inputs: {},
-        bindings: {
-            keyboard: {
-                38: "up",
-                40: "down",
-                37: "left",
-                39: "right"
-            }
-        }
+        inputs: {}
     },
     getData: function() {
         return this.data
@@ -28,9 +20,6 @@ var InputStore = Reflux.createStore({
     },
     hasStrokedInput: function(keycode) {
         return this.data.inputs[keycode] == true
-    },
-    getKeyboardBindings: function() {
-        return this.data.bindings.keyboard
     }
 })
 
