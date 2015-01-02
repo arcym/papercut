@@ -4,6 +4,9 @@ var WorldStore = Reflux.createStore({
         height: 15,
         tiles: []
     },
+    getData: function() {
+        return this.data
+    },
     init: function() {
         var world = require("<root>/assets/level.json")
         this.data.width = world.width
@@ -15,9 +18,6 @@ var WorldStore = Reflux.createStore({
                 t: world.layers[0].data[index]
             })
         }
-    },
-    getData: function() {
-        return this.data
     }
 })
 

@@ -1,13 +1,13 @@
 var LoopDispatcher = require("<root>/scripts/dispatchers/LoopDispatcher")
-var KeyboardDispatcher = require("<root>/scripts/dispatchers/KeyboardDispatcher")
+var InputDispatcher = require("<root>/scripts/dispatchers/InputDispatcher")
 
 var World = require("<root>/scripts/components/World")
 var Player = require("<root>/scripts/components/Player")
 
 var GameFrame = React.createClass({
     componentDidMount: function() {
-        KeyboardDispatcher()
         LoopDispatcher()
+        InputDispatcher()
     },
     render: function() {
         return (
