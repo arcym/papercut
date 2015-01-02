@@ -10,15 +10,15 @@ var KeyboardInputStore = Reflux.createStore({
     init: function() {
         this.listenToMany(KeyboardInputActions)
     },
-    onStrokeKey: function(keycode) {
+    onStroke: function(keycode) {
         this.data.strokes[keycode] = true
-        this.trigger(this.data)
+        this.retrigger()
     },
-    onUnstrokeKey: function(keycode) {
+    onUnstroke: function(keycode) {
         delete this.data.strokes[keycode]
-        this.trigger(this.data)
+        this.retrigger()
     },
-    hasStrokedKey: function(keycode) {
+    hasStroked: function(keycode) {
         return this.data.strokes[keycode] == true
     }
 })

@@ -1,5 +1,5 @@
 var KeyboardActions = Reflux.createActions([
-	"StrokeKey", "UnstrokeKey"
+	"Stroke", "Unstroke"
 ])
 
 module.exports = KeyboardActions

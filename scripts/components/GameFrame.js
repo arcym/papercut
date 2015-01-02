@@ -6,8 +6,8 @@ var Player = require("<root>/scripts/components/Player")
 
 var GameFrame = React.createClass({
     componentDidMount: function() {
-        LoopDispatcher()
         InputDispatcher()
+        LoopDispatcher()
     },
     render: function() {
         return (

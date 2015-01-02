@@ -13,19 +13,19 @@ var PlayerStore = Reflux.createStore({
     },
     onPlayerMoveNorth: function() {
         this.data.y -= 1
-        this.trigger(this.data)
+        this.retrigger()
     },
     onPlayerMoveSouth: function() {
         this.data.y += 1
-        this.trigger(this.data)
+        this.retrigger()
     },
     onPlayerMoveEast: function() {
         this.data.x += 1
-        this.trigger(this.data)
+        this.retrigger()
     },
     onPlayerMoveWest: function() {
         this.data.x -= 1
-        this.trigger(this.data)
+        this.retrigger()
     }
 })
 

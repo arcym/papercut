@@ -3,12 +3,12 @@ var KeyboardInputActions = require("<root>/scripts/actions/KeyboardInputActions"
 
 var KeyboardInputDispatcher = function() {
     document.addEventListener("keydown", function(event) {
-        if(!KeyboardInputStore.hasStrokedKey(event.keyCode)) {
-            KeyboardInputActions.StrokeKey(event.keyCode)
+        if(!KeyboardInputStore.hasStroked(event.keyCode)) {
+            KeyboardInputActions.Stroke(event.keyCode)
         }
     })
     document.addEventListener("keyup", function(event) {
-        KeyboardInputActions.UnstrokeKey(event.keyCode)
+        KeyboardInputActions.Unstroke(event.keyCode)
     })
 }
 
