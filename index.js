@@ -10,5 +10,5 @@ Reflux.StoreMethods.retrigger = function() {
     this.trigger(data)
 }
 
-var GameFrame = require("<root>/scripts/components/GameFrame")
-React.render(<GameFrame/>, document.body)
+var Game = require("<root>/scripts/components/Game")
+React.render(<Game/>, document.body)

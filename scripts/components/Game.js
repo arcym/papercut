@@ -5,7 +5,7 @@ var InputFunctionDispatcher = require("<root>/scripts/dispatchers/InputFunctionD
 var World = require("<root>/scripts/components/World")
 var Player = require("<root>/scripts/components/Player")
 
-var GameFrame = React.createClass({
+var Game = React.createClass({
     componentDidMount: function() {
         InputDispatcher()
         InputFunctionDispatcher()
@@ -21,4 +21,4 @@ var GameFrame = React.createClass({
     }
 })
 
-module.exports = GameFrame
+module.exports = Game
