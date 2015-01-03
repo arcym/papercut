@@ -29,52 +29,6 @@ var WorldStore = Reflux.createStore({
                 passable: world.layers[0].data[index] != 1
             })
         }
-    },
-    listenables: [
-        PlayerActions
-    ],
-    onPlayerIsMoving: function(x, y, xdir, ydir) {
-        var nxdir = 0, nydir = 0
-        if(xdir != 0 && ydir != 0) {
-            if(this.getTile(x, y + ydir).passable
-            || this.getTile(x + xdir, y).passable) {
-                if(this.getTile(x + xdir, y + ydir).passable) {
-                    nxdir = xdir
-                    nydir = ydir
-                } else {
-                    if(ydir <= -1) {
-                        if(this.getTile(x, y + ydir).passable) {
-                            nxdir = 0
-                            nydir = ydir
-                        } else if(this.getTile(x + xdir, y).passable) {
-                            nxdir = xdir
-                            nydir = 0
-                        }
-                    } else if (ydir >= +1) {
-                        if(this.getTile(x + xdir, y).passable) {
-                            nxdir = xdir
-                            nydir = 0
-                        } else if(this.getTile(x, y + ydir).passable) {
-                            nxdir = 0
-                            nydir = ydir
-                        }
-                    }
-                }
-            }
-        } else {
-            if(this.getTile(x + xdir, y + ydir).passable) {
-                nxdir = xdir
-                nydir = ydir
-            }
-        }
-        PlayerActions.PlayerMove(x, y, nxdir, nydir)
-    },
-    onPlayerHasMoved: function(x, y, xdir, ydir) {
-        if(this.getTile(x + xdir, y + ydir + 1).passable == false) {
-            PlayerActions.PlayerHasLanded()
-        } else {
-            PlayerActions.PlayerIsFalling()
-        }
     }
 })
 
