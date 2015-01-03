@@ -25,7 +25,8 @@ var WorldStore = Reflux.createStore({
             this.data.tiles.push({
                 x: index % world.width,
                 y: Math.floor(index / world.width),
-                type: world.layers[0].data[index]
+                type: world.layers[0].data[index],
+                passable: world.layers[0].data[index] != 1
             })
         }
     },
@@ -33,23 +34,30 @@ var WorldStore = Reflux.createStore({
         PlayerActions
     ],
     onPlayerAttemptsToMove: function(x, y, xdir, ydir) {
-        if(this.getTile(x + xdir, y + ydir).type != 1) {
-            PlayerActions.PlayerMoves(x + xdir, y + ydir)
-        } else {
-            if(xdir != 0 && ydir != 0) {
-                if(ydir <= -1) {
-                    if(this.getTile(x, y + ydir).type != 1) {
-                        PlayerActions.PlayerMoves(x, y + ydir)
-                    } else if(this.getTile(x + xdir, y).type != 1) {
-                        PlayerActions.PlayerMoves(x + xdir, y)
-                    }
-                } else if (ydir >= 1) {
-                    if(this.getTile(x + xdir, y).type != 1) {
-                        PlayerActions.PlayerMoves(x + xdir, y)
-                    } else if(this.getTile(x, y + ydir).type != 1) {
-                        PlayerActions.PlayerMoves(x, y + ydir)
+        if(xdir != 0 && ydir != 0) {
+            if(this.getTile(x, y + ydir).passable
+            || this.getTile(x + xdir, y).passable) {
+                if(this.getTile(x + xdir, y + ydir).passable) {
+                    PlayerActions.PlayerMoves(x + xdir, y + ydir)
+                } else {
+                    if(ydir <= -1) {
+                        if(this.getTile(x, y + ydir).passable) {
+                            PlayerActions.PlayerMoves(x, y + ydir)
+                        } else if(this.getTile(x + xdir, y).type != 1) {
+                            PlayerActions.PlayerMoves(x + xdir, y)
+                        }
+                    } else if (ydir >= +1) {
+                        if(this.getTile(x + xdir, y).passable) {
+                            PlayerActions.PlayerMoves(x + xdir, y)
+                        } else if(this.getTile(x, y + ydir).type != 1) {
+                            PlayerActions.PlayerMoves(x, y + ydir)
+                        }
                     }
                 }
+            }
+        } else {
+            if(this.getTile(x + xdir, y + ydir).passable) {
+                PlayerActions.PlayerMoves(x + xdir, y + ydir)
             }
         }
     }
