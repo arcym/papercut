@@ -1,23 +1,37 @@
+var DefaultInputConfig = require("<root>/assets/DefaultInputConfig")
+var KeycodeDictionary = require("<root>/scripts/references/KeycodeDictionary")
+
+var InputActions = require("<root>/scripts/actions/InputActions")
+var KeyboardActions = require("<root>/scripts/actions/KeyboardActions")
+
 var InputConfigStore = Reflux.createStore({
     data: {
-        keyboard: {
-            38: "north",
-            40: "south",
-            37: "west",
-            39: "east",
-            87: "north",
-            83: "south",
-            65: "west",
-            68: "east",
-            81: "northwest",
-            69: "northeast",
-        }
+        keyboard: {}
     },
     getData: function() {
         return this.data
     },
-    parseKeyboardInput: function(keycode) {
-        return this.data.keyboard[keycode]
+    init: function() {
+        var config = DefaultInputConfig
+        for(var keyname in config.keyboard) {
+            var keycode = KeycodeDictionary.getKeycode(keyname)
+            this.data.keyboard[keycode] = config.keyboard[keyname]
+        }
+    },
+    listenables: [
+        KeyboardActions
+    ],
+    onStrokeKey: function(keycode) {
+        var input = this.data.keyboard[keycode]
+        if(input) {
+            InputActions.StrokeInput(input)
+        }
+    },
+    onUnstrokeKey: function(keycode) {
+        var input = this.data.keyboard[keycode]
+        if(input) {
+            InputActions.UnstrokeInput(input)
+        }
     }
 })
 

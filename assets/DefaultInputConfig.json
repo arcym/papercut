@@ -1,0 +1,10 @@
+{
+    "keyboard": {
+        "w": "north",
+        "s": "south",
+        "d": "east",
+        "a": "west",
+        "q": "northwest",
+        "e": "northeast"
+    }
+}
