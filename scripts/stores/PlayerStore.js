@@ -18,10 +18,10 @@ var PlayerStore = Reflux.createStore({
         PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, 0, +1)
     },
     onPlayerAttemptsToMoveEast: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, 0)
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, +1)
     },
     onPlayerAttemptsToMoveWest: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, 0)
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, +1)
     },
     onPlayerAttemptsToMoveNortheast: function() {
         PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, -1)
