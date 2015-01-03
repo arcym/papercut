@@ -34,31 +34,46 @@ var WorldStore = Reflux.createStore({
         PlayerActions
     ],
     onPlayerAttemptsToMove: function(x, y, xdir, ydir) {
+        var nxdir = 0, nydir = 0
         if(xdir != 0 && ydir != 0) {
             if(this.getTile(x, y + ydir).passable
             || this.getTile(x + xdir, y).passable) {
                 if(this.getTile(x + xdir, y + ydir).passable) {
-                    PlayerActions.PlayerMoves(x + xdir, y + ydir)
+                    nxdir = xdir
+                    nydir = ydir
                 } else {
                     if(ydir <= -1) {
                         if(this.getTile(x, y + ydir).passable) {
-                            PlayerActions.PlayerMoves(x, y + ydir)
-                        } else if(this.getTile(x + xdir, y).type != 1) {
-                            PlayerActions.PlayerMoves(x + xdir, y)
+                            nxdir = 0
+                            nydir = ydir
+                        } else if(this.getTile(x + xdir, y).passable) {
+                            nxdir = xdir
+                            nydir = 0
                         }
                     } else if (ydir >= +1) {
                         if(this.getTile(x + xdir, y).passable) {
-                            PlayerActions.PlayerMoves(x + xdir, y)
-                        } else if(this.getTile(x, y + ydir).type != 1) {
-                            PlayerActions.PlayerMoves(x, y + ydir)
+                            nxdir = xdir
+                            nydir = 0
+                        } else if(this.getTile(x, y + ydir).passable) {
+                            nxdir = 0
+                            nydir = ydir
                         }
                     }
                 }
             }
         } else {
             if(this.getTile(x + xdir, y + ydir).passable) {
-                PlayerActions.PlayerMoves(x + xdir, y + ydir)
+                nxdir = xdir
+                nydir = ydir
             }
+        }
+        PlayerActions.PlayerMoves(x, y, nxdir, nydir)
+    },
+    onPlayerHasMoved: function(x, y, xdir, ydir) {
+        if(this.getTile(x + xdir, y + ydir + 1).passable == false) {
+            PlayerActions.PlayerHasLanded()
+        } else {
+            PlayerActions.PlayerIsFalling()
         }
     }
 })
