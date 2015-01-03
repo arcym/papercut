@@ -1,6 +1,7 @@
 var WorldStore = require("<root>/scripts/stores/WorldStore")
 var GameFrameStore = require("<root>/scripts/stores/GameFrameStore")
 
+var PlayerStore = require("<root>/scripts/stores/PlayerStore")
 var PlayerActions = require("<root>/scripts/actions/PlayerActions")
 
 var CameraStore = Reflux.createStore({
@@ -10,6 +11,9 @@ var CameraStore = Reflux.createStore({
     },
     getData: function() {
         return this.data
+    },
+    init: function() {
+        this.data.x = (PlayerStore.getData().x - 5) * -1
     },
     listenables: [
         PlayerActions
