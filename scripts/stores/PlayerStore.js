@@ -12,24 +12,24 @@ var PlayerStore = Reflux.createStore({
         PlayerActions
     ],
     onPlayerAttemptsToMoveNorth: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y - 1, "north")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, 0, -1)
     },
     onPlayerAttemptsToMoveSouth: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y + 1, "south")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, 0, +1)
     },
     onPlayerAttemptsToMoveEast: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x + 1, this.data.y, "east")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, 0)
     },
     onPlayerAttemptsToMoveWest: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x - 1, this.data.y, "west")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, 0)
     },
     onPlayerAttemptsToMoveNortheast: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x + 1, this.data.y - 1, "northeast")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, -1)
     },
     onPlayerAttemptsToMoveNorthwest: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x - 1, this.data.y - 1, "northwest")
+        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, -1)
     },
-    onPlayerMoves: function(x, y, direction) {
+    onPlayerMoves: function(x, y) {
         this.data.x = x
         this.data.y = y
         this.retrigger()

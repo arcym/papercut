@@ -32,18 +32,24 @@ var WorldStore = Reflux.createStore({
     listenables: [
         PlayerActions
     ],
-    onPlayerAttemptsToMove: function(x, y, direction) {
-        if(this.getTile(x, y).type != 1) {
-            PlayerActions.PlayerMoves(x, y, direction)
+    onPlayerAttemptsToMove: function(x, y, xdir, ydir) {
+        if(this.getTile(x + xdir, y + ydir).type != 1) {
+            PlayerActions.PlayerMoves(x + xdir, y + ydir)
         } else {
-            if(direction == "northeast"
-            || direction == "northwest") {
-                if(this.getTile(x - 1, y)) {
-                    PlayerActions.PlayerMoves(x - 1, y, "north")
+            if(xdir != 0 && ydir != 0) {
+                if(ydir <= -1) {
+                    if(this.getTile(x, y + ydir).type != 1) {
+                        PlayerActions.PlayerMoves(x, y + ydir)
+                    } else if(this.getTile(x + xdir, y).type != 1) {
+                        PlayerActions.PlayerMoves(x + xdir, y)
+                    }
+                } else if (ydir >= 1) {
+                    if(this.getTile(x + xdir, y).type != 1) {
+                        PlayerActions.PlayerMoves(x + xdir, y)
+                    } else if(this.getTile(x, y + ydir).type != 1) {
+                        PlayerActions.PlayerMoves(x, y + ydir)
+                    }
                 }
-            } else if(direction == "southeast"
-            || direction == "southwest") {
-                console.log("?")
             }
         }
     }
