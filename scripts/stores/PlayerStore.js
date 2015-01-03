@@ -14,24 +14,24 @@ var PlayerStore = Reflux.createStore({
         PlayerActions
     ],
     onPlayerIsMovingNorth: function() {
-        PlayerActions.PlayerIsMoving(0, -1) //this.data.jump > 0 ? -1 : +1)
+        PlayerActions.PlayerIsMoving(0, this.data.jump > 0 ? -1 : +1, "north")
     },
     onPlayerIsMovingSouth: function() {
-        PlayerActions.PlayerIsMoving(0, +1)
+        PlayerActions.PlayerIsMoving(0, +1, "south")
     },
     onPlayerIsMovingEast: function() {
-        PlayerActions.PlayerIsMoving(+1, this.data.jump > 0 ? 0 : +1)
+        PlayerActions.PlayerIsMoving(+1, this.data.jump > 0 ? 0 : +1, "east")
     },
     onPlayerIsMovingWest: function() {
-        PlayerActions.PlayerIsMoving(-1, this.data.jump > 0 ? 0 : +1)
+        PlayerActions.PlayerIsMoving(-1, this.data.jump > 0 ? 0 : +1, "west")
     },
     onPlayerIsMovingNortheast: function() {
-        PlayerActions.PlayerIsMoving(+1, this.data.jump > 0 ? -1 : +1)
+        PlayerActions.PlayerIsMoving(+1, this.data.jump > 0 ? -1 : +1, "north-east")
     },
     onPlayerIsMovingNorthwest: function() {
-        PlayerActions.PlayerIsMoving(-1, this.data.jump > 0 ? -1 : +1)
+        PlayerActions.PlayerIsMoving(-1, this.data.jump > 0 ? -1 : +1, "north-west")
     },
-    onPlayerIsMoving: function(xd, yd) {
+    onPlayerIsMoving: function(xd, yd, dir) {
         var x = this.data.x
         var y = this.data.y
         if(xd == 0 || yd == 0) {
@@ -111,7 +111,7 @@ var PlayerStore = Reflux.createStore({
                 this.data.jump = 3
             }
             this.retrigger()
-            PlayerActions.PlayerHasMoved()
+            PlayerActions.PlayerHasMoved(this.data.x, this.data.y)
         }
     }
 })

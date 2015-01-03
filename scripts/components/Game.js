@@ -6,6 +6,8 @@ var InputCallbackStore = require("<root>/scripts/stores/InputCallbackStore")
 
 var World = require("<root>/scripts/components/World")
 var Player = require("<root>/scripts/components/Player")
+var Camera = require("<root>/scripts/components/Camera")
+var GameFrame = require("<root>/scripts/components/GameFrame")
 
 var Game = React.createClass({
     componentDidMount: function() {
@@ -14,10 +16,12 @@ var Game = React.createClass({
     },
     render: function() {
         return (
-            <div id="game-frame">
-                <World/>
-                <Player/>
-            </div>
+            <GameFrame>
+                <Camera>
+                    <World/>
+                    <Player/>
+                </Camera>
+            </GameFrame>
         )
     }
 })

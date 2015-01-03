@@ -17,6 +17,12 @@ var WorldStore = Reflux.createStore({
             throw x + " and " + y + " are not valid"
         }
     },
+    getWidth: function() {
+        return this.data.width
+    },
+    getHeight: function() {
+        return this.data.height
+    },
     init: function() {
         var world = require("<root>/assets/FirstWorld.json")
         this.data.width = world.width
