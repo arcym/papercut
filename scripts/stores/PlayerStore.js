@@ -12,37 +12,39 @@ var PlayerStore = Reflux.createStore({
     listenables: [
         PlayerActions
     ],
-    onPlayerAttemptsToMoveNorth: function() {
-        var ydir = this.data.jump > 0 ? -1 : +1
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, 0, ydir)
-    },
-    onPlayerAttemptsToMoveSouth: function() {
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, 0, +1)
-    },
-    onPlayerAttemptsToMoveEast: function() {
-        var ydir = this.data.jump > 0 ? 0 : +1
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, ydir)
-    },
-    onPlayerAttemptsToMoveWest: function() {
-        var ydir = this.data.jump > 0 ? 0 : +1
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, ydir)
-    },
-    onPlayerAttemptsToMoveNortheast: function() {
-        var ydir = this.data.jump > 0 ? -1 : +1
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, +1, ydir)
-    },
-    onPlayerAttemptsToMoveNorthwest: function() {
-        var ydir = this.data.jump > 0 ? -1 : +1
-        PlayerActions.PlayerAttemptsToMove(this.data.x, this.data.y, -1, ydir)
-    },
-    onPlayerMoves: function(x, y, xdir, ydir) {
-        this.data.x += xdir
-        this.data.y += ydir
-        if(xdir != 0 && ydir == 0) {
-            this.data.jump = 0
+    onPlayerAttemptsToMove: function(direction) {
+        var xdir = 0, ydir = 0
+        if(direction == "north") {
+            xdir = 0
+            ydir = this.data.jump > 0 ? -1 : +1
+        } else if(direction == "south") {
+            xdir = 0
+            ydir = +1
+        } else if(direction == "east") {
+            xdir = +1
+            ydir = this.data.jump > 0 ? 0 : +1
+        } else if(direction == "west") {
+            xdir = -1
+            ydir = this.data.jump > 0 ? 0 : +1
+        } else if(direction == "northeast") {
+            xdir = +1
+            ydir = this.data.jump > 0 ? -1 : +1
+        } else if(direction == "northwest") {
+            xdir = -1
+            ydir = this.data.jump > 0 ? -1 : +1
         }
-        this.retrigger()
-        PlayerActions.PlayerHasMoved(x, y, xdir, ydir)
+        PlayerActions.PlayerIsMoving(this.data.x, this.data.y, xdir, ydir)
+    },
+    onPlayerMove: function(x, y, xdir, ydir) {
+        if(xdir != 0 || ydir != 0) {
+            this.data.x += xdir
+            this.data.y += ydir
+            if(xdir != 0 && ydir == 0) {
+                this.data.jump = 0
+            }
+            this.retrigger()
+            PlayerActions.PlayerHasMoved(x, y, xdir, ydir)
+        }
     },
     onPlayerHasLanded: function() {
         this.data.jump = 3

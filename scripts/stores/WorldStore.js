@@ -33,7 +33,7 @@ var WorldStore = Reflux.createStore({
     listenables: [
         PlayerActions
     ],
-    onPlayerAttemptsToMove: function(x, y, xdir, ydir) {
+    onPlayerIsMoving: function(x, y, xdir, ydir) {
         var nxdir = 0, nydir = 0
         if(xdir != 0 && ydir != 0) {
             if(this.getTile(x, y + ydir).passable
@@ -67,7 +67,7 @@ var WorldStore = Reflux.createStore({
                 nydir = ydir
             }
         }
-        PlayerActions.PlayerMoves(x, y, nxdir, nydir)
+        PlayerActions.PlayerMove(x, y, nxdir, nydir)
     },
     onPlayerHasMoved: function(x, y, xdir, ydir) {
         if(this.getTile(x + xdir, y + ydir + 1).passable == false) {
