@@ -5,12 +5,12 @@ var InputCallbackStore = Reflux.createStore({
     data: {
         callbacks: {
             StrokeInput: {
-                "north": [PlayerActions.PlayerMovesNorth],
-                "south": [PlayerActions.PlayerMovesSouth],
-                "east": [PlayerActions.PlayerMovesEast],
-                "west": [PlayerActions.PlayerMovesWest],
-                "northeast": [PlayerActions.PlayerMovesNortheast],
-                "northwest": [PlayerActions.PlayerMovesNorthwest],
+                "north": [PlayerActions.PlayerAttemptsToMoveNorth],
+                "south": [PlayerActions.PlayerAttemptsToMoveSouth],
+                "east": [PlayerActions.PlayerAttemptsToMoveEast],
+                "west": [PlayerActions.PlayerAttemptsToMoveWest],
+                "northeast": [PlayerActions.PlayerAttemptsToMoveNortheast],
+                "northwest": [PlayerActions.PlayerAttemptsToMoveNorthwest],
             },
             UnstrokeInput: {
             }
