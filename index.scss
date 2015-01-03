@@ -7,10 +7,11 @@
 @import "./styles/references/Colors.scss";
 @import "./styles/references/Sizes.scss";
 
-@import "./styles/components/GameFrame.scss";
 @import "./styles/components/Player.scss";
 @import "./styles/components/World.scss";
 @import "./styles/components/Camera.scss";
+@import "./styles/components/GameFrame.scss";
+@import "./styles/components/LoopStatus.scss";
 
 :root
 {

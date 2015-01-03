@@ -8,6 +8,7 @@ var World = require("<root>/scripts/components/World")
 var Player = require("<root>/scripts/components/Player")
 var Camera = require("<root>/scripts/components/Camera")
 var GameFrame = require("<root>/scripts/components/GameFrame")
+var LoopStatus = require("<root>/scripts/components/LoopStatus")
 
 var Game = React.createClass({
     componentDidMount: function() {
@@ -21,6 +22,7 @@ var Game = React.createClass({
                     <World/>
                     <Player/>
                 </Camera>
+                <LoopStatus/>
             </GameFrame>
         )
     }

@@ -2,16 +2,17 @@ var LoopActions = require("<root>/scripts/actions/LoopActions")
 
 var LoopStore = Reflux.createStore({
     data: {
-        timedelta: 0
+        delta: 0,
+        avgdelta: 0
     },
     getData: function() {
         return this.data
     },
-    init: function() {
-        this.listenToMany(LoopActions)
-    },
-    onTick: function(timedelta) {
-        this.data.timedelta = timedelta
+    listenables: [
+        LoopActions
+    ],
+    onTick: function(delta) {
+        this.data.delta = delta
         this.retrigger()
     }
 })
