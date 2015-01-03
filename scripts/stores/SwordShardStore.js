@@ -11,6 +11,12 @@ var SwordShardStore = Reflux.createStore({
     listenables: [
         PlayerActions
     ],
+    onPlayerHasMoved: function(x, y) {
+        if(x == this.data.x
+        && y == this.data.y) {
+            console.log("YOU WIN!")
+        }
+    }
 })
 
 module.exports = SwordShardStore
