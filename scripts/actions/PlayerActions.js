@@ -1,8 +1,18 @@
 var PlayerActions = Reflux.createActions([
-    "PlayerMoveNorth",
-    "PlayerMoveSouth",
-    "PlayerMoveEast",
-    "PlayerMoveWest"
+    "PlayerMovesNorth",
+    "PlayerMovesSouth",
+    "PlayerMovesEast",
+    "PlayerMovesWest",
+    "PlayerMovesNortheast",
+    "PlayerMovesNorthwest",
+    "PlayerMovesSoutheast",
+    "PlayerMovesSouthwest",
+    "PlayerAttemptsToMoveNorth",
+    "PlayerAttemptsToMoveSouth",
+    "PlayerAttemptsToMoveEast",
+    "PlayerAttemptsToMoveWest",
+    "PlayerAttemptsToMoveNortheast",
+    "PlayerAttemptsToMoveNorthwest",
 ])
 
 module.exports = PlayerActions

@@ -8,23 +8,43 @@ var PlayerStore = Reflux.createStore({
     getData: function() {
         return this.data
     },
-    init: function() {
-        this.listenToMany(PlayerActions)
-    },
-    onPlayerMoveNorth: function() {
+    listenables: [
+        PlayerActions
+    ],
+    onPlayerMovesNorth: function() {
         this.data.y -= 1
         this.retrigger()
     },
-    onPlayerMoveSouth: function() {
+    onPlayerMovesSouth: function() {
         this.data.y += 1
         this.retrigger()
     },
-    onPlayerMoveEast: function() {
+    onPlayerMovesEast: function() {
         this.data.x += 1
         this.retrigger()
     },
-    onPlayerMoveWest: function() {
+    onPlayerMovesWest: function() {
         this.data.x -= 1
+        this.retrigger()
+    },
+    onPlayerMovesNortheast: function() {
+        this.data.x += 1
+        this.data.y -= 1
+        this.retrigger()
+    },
+    onPlayerMovesNorthwest: function() {
+        this.data.x -= 1
+        this.data.y -= 1
+        this.retrigger()
+    },
+    onPlayerMovesSoutheast: function() {
+        this.data.x += 1
+        this.data.y += 1
+        this.retrigger()
+    },
+    onPlayerMovesSouthwest: function() {
+        this.data.x -= 1
+        this.data.y += 1
         this.retrigger()
     }
 })
