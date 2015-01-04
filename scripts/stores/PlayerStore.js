@@ -3,7 +3,7 @@ var WorldStore = require("<root>/scripts/stores/WorldStore")
 
 var PlayerStore = Reflux.createStore({
     data: {
-        x: 40,
+        x: 5,
         y: 2,
         jump: 3
     },

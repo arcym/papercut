@@ -15,7 +15,7 @@ var WorldTile = React.createClass({
         return {
             left: this.props.tile.x + "rem",
             top: this.props.tile.y + "rem",
-            backgroundImage: "url(./assets/tiles/tile" + this.props.tile.image + ".png)"
+            backgroundImage: "url(./assets/tiles/tile" + this.props.tile.image + ".svg)"
             
         }
     },
