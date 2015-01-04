@@ -32,7 +32,8 @@ var WorldStore = Reflux.createStore({
                 x: index % world.width,
                 y: Math.floor(index / world.width),
                 type: world.layers[0].data[index],
-                passable: world.layers[0].data[index] != 1
+                passable: world.layers[0].data[index] != 1,
+                image: world.layers[0].data[index] == 2 ? 1 : Math.floor(Math.random() * 17) + 2
             })
         }
     }
