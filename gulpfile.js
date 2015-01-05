@@ -23,13 +23,9 @@ gulp.task("styles", function() {
 gulp.task("scripts", function() {
     return browserify("./source/index.js")
                .transform("reactify")
-               .transform(aliasify.configure({
-                    configDir: __dirname,
-                    verbose: false,
-                    aliases: {
-                        "<root>": "./source"
-                    }
-                }))
+               .transform("aliasify")
+               //.transform("envify")
+               //.transform("uglifyify")
                .bundle()
                .pipe(stream("index.js"))
                .pipe(gulp.dest("./build/"))
