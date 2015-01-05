@@ -1,0 +1,33 @@
+{
+  "name": "papercut",
+  "version": "0.1.0",
+  "author": {
+    "name": "Andrew McPherson",
+    "email": "andrewmcp333@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arcym/papercut.git"
+  },
+  "engines": {
+    "node": ">=0.10.3"
+  },
+  "dependencies": {
+    "react": "~0.12.1",
+    "reflux": "~0.2.0",
+    "screenfull": "~1.2.1"
+  },
+  "devDependencies": {
+    "express": "~4.10.3",
+    "through": "~2.3.6",
+    "colors": "~1.0.3",
+    "beepbeep": "~1.2.0",
+    "gulp": "~3.8.10",
+    "gulp-ruby-sass": "~0.7.1",
+    "gulp-autoprefixer": "~2.0.0",
+    "vinyl-source-stream": "~1.0.0",
+    "browserify": "~6.3.3",
+    "reactify": "~0.17.1",
+    "aliasify": "~1.5.0"
+  }
+}
