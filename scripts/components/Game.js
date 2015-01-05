@@ -10,7 +10,6 @@ var World = require("<root>/scripts/components/World")
 var SwordShard = require("<root>/scripts/components/SwordShard")
 var Player = require("<root>/scripts/components/Player")
 var LoopStatus = require("<root>/scripts/components/LoopStatus")
-var FullscreenButton = require("<root>/scripts/components/FullscreenButton")
 
 var Game = React.createClass({
     componentDidMount: function() {
@@ -25,7 +24,6 @@ var Game = React.createClass({
                     <SwordShard/>
                     <Player/>
                 </Camera>
-                <FullscreenButton/>
             </GameFrame>
         )
     }
