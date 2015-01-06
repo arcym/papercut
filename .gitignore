@@ -1,4 +1,4 @@
 node_modules
-staging
 
-deploy.bat
+staging
+staging.bat
