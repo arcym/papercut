@@ -2,7 +2,10 @@ var gulp = require("gulp");
 var gulp_sass = require("gulp-sass");
 var gulp_autoprefixer = require("gulp-autoprefixer");
 var gulp_git = require("gulp-git");
+
 var stream = require("vinyl-source-stream");
+var child = require("child-process-promise");
+
 var browserify = require("browserify");
 var reactify = require("reactify");
 var aliasify = require("aliasify");
@@ -10,7 +13,7 @@ var aliasify = require("aliasify");
 gulp.task("markup", function()
 {
     gulp.src("./source/index.html")
-        .pipe(gulp.dest("./build/"))
+        .pipe(gulp.dest("./staging/"))
 });
 
 gulp.task("styles", function()
@@ -18,7 +21,7 @@ gulp.task("styles", function()
     gulp.src("./source/index.scss")
         .pipe(gulp_sass())
         .pipe(gulp_autoprefixer())
-        .pipe(gulp.dest("./build/"))
+        .pipe(gulp.dest("./staging/"))
 });
 
 gulp.task("scripts", function()
@@ -28,13 +31,13 @@ gulp.task("scripts", function()
         .transform("aliasify")
         .bundle()
         .pipe(stream("index.js"))
-        .pipe(gulp.dest("./build/"))
+        .pipe(gulp.dest("./staging/"))
 });
 
 gulp.task("assets", function()
 {
     gulp.src("./source/assets/**/*.*")
-        .pipe(gulp.dest("./build/assets/"))
+        .pipe(gulp.dest("./staging/assets/"))
 });
 
 gulp.task("default", function()
@@ -44,10 +47,6 @@ gulp.task("default", function()
 
 gulp.task("deploy", function()
 {
-    gulp_git.checkout("gh-pages", function(error)
-    {
-        if(error) {console.log(error);}
-        gulp.src("./source/index.html")
-            .pipe(gulp_git.add())
-    });
+    child.exec("git stash")
+         .then(child.exec("git checkout gh-pages"))
 });
