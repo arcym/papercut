@@ -13,7 +13,7 @@ var aliasify = require("aliasify");
 gulp.task("markup", function()
 {
     gulp.src("./source/index.html")
-        .pipe(gulp.dest("./staging/"))
+        .pipe(gulp.dest("./builds/"))
 });
 
 gulp.task("styles", function()
@@ -21,7 +21,7 @@ gulp.task("styles", function()
     gulp.src("./source/index.scss")
         .pipe(gulp_sass())
         .pipe(gulp_autoprefixer())
-        .pipe(gulp.dest("./staging/"))
+        .pipe(gulp.dest("./builds/"))
 });
 
 gulp.task("scripts", function()
@@ -31,13 +31,13 @@ gulp.task("scripts", function()
         .transform("aliasify")
         .bundle()
         .pipe(stream("index.js"))
-        .pipe(gulp.dest("./staging/"))
+        .pipe(gulp.dest("./builds/"))
 });
 
 gulp.task("assets", function()
 {
     gulp.src("./source/assets/**/*.*")
-        .pipe(gulp.dest("./staging/assets/"))
+        .pipe(gulp.dest("./builds/assets/"))
 });
 
 gulp.task("default", function()
