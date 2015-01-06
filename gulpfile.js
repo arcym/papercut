@@ -44,13 +44,3 @@ gulp.task("default", function()
 {
     gulp.start(["markup", "styles", "scripts", "assets"]);
 });
-
-gulp.task("deploy", function()
-{
-    process.exec("git stash")
-           .then(process.exec("git checkout gh-pages"))
-           .then(process.exec("cp -r staging/* ."))
-           .then(process.exec("git add --all"))
-           //.then(process.exec("git checkout master"))
-           //.then(process.exec("git stash pop"))
-});
