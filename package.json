@@ -1,6 +1,7 @@
 {
   "name": "papercut",
   "version": "0.1.0",
+  "main": "index.html",
   "author": {
     "name": "Andrew McPherson",
     "email": "andrewmcp333@gmail.com"
@@ -33,6 +34,12 @@
     "uglifyify": "~2.6.0",
     "gulp-git": "~0.5.5",
     "child-process-promise": "~1.0.1"
+  },
+  "window": {
+    "title": "Papercut!",
+    "toolbar": false,
+    "width": 640,
+    "height": 480
   },
   "aliasify": {
     "aliases": {
