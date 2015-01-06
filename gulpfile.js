@@ -48,14 +48,8 @@ gulp.task("deploy", function()
 {
     return gulp_git.checkout("gh-pages", function(error)
     {
-        if(error)
-        {
-            throw error;
-        }
-        else
-        {
-            return gulp.src("./source/index.html")
-                       .pipe(gulp_git.add())
-        }
+        if(error) {console.log(error);}
+        gulp.src("./source/index.html")
+            .pipe(gulp_git.add())
     });
 });
