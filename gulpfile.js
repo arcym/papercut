@@ -4,7 +4,7 @@ var gulp_autoprefixer = require("gulp-autoprefixer");
 var gulp_git = require("gulp-git");
 
 var stream = require("vinyl-source-stream");
-var child = require("child-process-promise");
+var process = require("child-process-promise");
 
 var browserify = require("browserify");
 var reactify = require("reactify");
@@ -47,6 +47,9 @@ gulp.task("default", function()
 
 gulp.task("deploy", function()
 {
-    child.exec("git stash")
-         .then(child.exec("git checkout gh-pages"))
+    process.exec("git stash")
+           .then(process.exec("git checkout gh-pages"))
+           .then(process.exec("cp -r staging ."))
+           //.then(process.exec("git checkout master"))
+           //.then(process.exec("git stash pop"))
 });
