@@ -1,8 +1,13 @@
+var pkg = require("./package.json")
+
 var gulp = require("gulp")
 var gulp_sass = require("gulp-sass")
 var gulp_autoprefixer = require("gulp-autoprefixer")
+var gulp_zip = require("gulp-zip")
 
+var fs = require("fs")
 var del = require("del")
+
 var stream = require("vinyl-source-stream")
 var process = require("child-process-promise")
 
@@ -10,7 +15,7 @@ var browserify = require("browserify")
 var reactify = require("reactify")
 var aliasify = require("aliasify")
 
-var NodeWebkitBuilder = require("node-webkit-builder")
+var NodeWebkit = require("node-webkit-builder")
 
 var build = new function()
 {
@@ -49,32 +54,62 @@ var build = new function()
         gulp.src("./package.json")
             .pipe(gulp.dest("./builds/" + dir + "/"))
     }
+    
+    //todo: make these compatible with jitterbug!
 }
 
-gulp.task("build", function()
+gulp.task("bump", function()
 {
-    del(["./builds/raw"], function()
+    //todo: bump the version number
+    //todo: save as a tag in github
+})
+
+gulp.task("build:gh", function()
+{
+    del(["./builds/gh"], function()
     {
-        build.markup("raw")
-        build.scripts("raw")
-        build.styles("raw")
-        build.assets("raw")
-        build.metadata("raw")
+        build.markup("gh")
+        build.scripts("gh")
+        build.styles("gh")
+        build.assets("gh")
+        build.metadata("gh")
+        
+        //cd builds
+        //git init
+        //git remote add origin https://github.com/arcym/papercut.git
+        //git checkout -b gh-pages
+        //git add --all
+        //git commit -m "Deploying to Github."
+        //git push origin gh-pages -f
+        //cd ..
     })
 })
 
 gulp.task("build:nw", function()
 {
-    new NodeWebkitBuilder({
-        files: "./builds/raw/**/*",
-        platforms: [
-            "win32",
-            "win64"
-        ],
-        buildDir: "./builds/nw",
-        cacheDir: "./node_webkit_partials"
-        buildType: "versioned",
-    }).build()
+    var nw = new NodeWebkit({
+        files: "./builds/gh/**/*",
+        platforms: ["win", "osx", "linux"],
+        cacheDir: "./node_webkit_partials",
+        buildDir: "./node_webkit_builds"
+    })
+    
+    nw.build().then(function()
+    {
+        fs.readdir("./node_webkit_builds/" + pkg.name, function(error, dirs)
+        {
+            for(var index = 0; index < dirs.length; index++) {
+                var dirpath = "./node_webkit_builds/" + pkg.name + "/" + dirs[index] + "/**/*"
+                var filename = pkg.name + " - v" + pkg.version + " - " + dirs[index] + ".zip"
+                
+                gulp.src(dirpath)
+                    .pipe(gulp_zip(filename))
+                    .pipe(gulp.dest("./builds/nw/"))
+            }
+        })
+    })
+    
+    //todo: delete ./node_webkit_builds when done
 })
 
-gulp.task("default", ["build"])
+gulp.task("default", ["build:gh"])

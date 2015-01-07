@@ -35,7 +35,8 @@
     "reactify": "~0.17.1",
     "through": "~2.3.6",
     "uglifyify": "~2.6.0",
-    "vinyl-source-stream": "~1.0.0"
+    "vinyl-source-stream": "~1.0.0",
+    "gulp-zip": "~2.0.2"
   },
   "window": {
     "title": "Papercut!",
