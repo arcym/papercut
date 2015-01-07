@@ -1,5 +1,4 @@
 node_modules
-builds
+node_webkit_partials
 
-build
-cache
+builds

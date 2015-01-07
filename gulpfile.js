@@ -1,15 +1,14 @@
-var gulp = require("gulp");
-var gulp_sass = require("gulp-sass");
-var gulp_autoprefixer = require("gulp-autoprefixer");
-var gulp_git = require("gulp-git");
+var gulp = require("gulp")
+var gulp_sass = require("gulp-sass")
+var gulp_autoprefixer = require("gulp-autoprefixer")
 
-var del = require("del");
-var stream = require("vinyl-source-stream");
-var process = require("child-process-promise");
+var del = require("del")
+var stream = require("vinyl-source-stream")
+var process = require("child-process-promise")
 
-var browserify = require("browserify");
-var reactify = require("reactify");
-var aliasify = require("aliasify");
+var browserify = require("browserify")
+var reactify = require("reactify")
+var aliasify = require("aliasify")
 
 var NodeWebkitBuilder = require("node-webkit-builder")
 
@@ -52,48 +51,30 @@ var build = new function()
     }
 }
 
-gulp.task("build:gh", function()
+gulp.task("build", function()
 {
-    del(["./builds/gh"], function()
+    del(["./builds/raw"], function()
     {
-        build.markup("gh")
-        build.scripts("gh")
-        build.styles("gh")
-        build.assets("gh")
+        build.markup("raw")
+        build.scripts("raw")
+        build.styles("raw")
+        build.assets("raw")
+        build.metadata("raw")
     })
 })
 
 gulp.task("build:nw", function()
 {
-    del(["./builds/nw"], function()
-    {
-        build.markup("nw")
-        build.scripts("nw")
-        build.styles("nw")
-        build.assets("nw")
-        build.metadata("nw")
-    })
-})
-
-gulp.task("deploy:nw", function()
-{
-    var nw = new NodeWebkitBuilder({
-        files: "./builds/nw/**/*",
+    new NodeWebkitBuilder({
+        files: "./builds/raw/**/*",
         platforms: [
-            "win32", "win64",
-            "osx32", "osx64",
-            "linux32", "linux64"
+            "win32",
+            "win64"
         ],
-        buildType: "versioned"
-    })
-    
-    nw.on("log", console.log)
-    
-    nw.build().then(function () {
-        console.log("BAM!!");
-    }).catch(function (error) {
-        console.error(error);
-    });
+        buildDir: "./builds/nw",
+        cacheDir: "./node_webkit_partials"
+        buildType: "versioned",
+    }).build()
 })
 
-gulp.task("default", ["build:nw"])
+gulp.task("default", ["build"])
