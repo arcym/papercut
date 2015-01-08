@@ -4,27 +4,27 @@ var buildpipe = require("./buildpipe")
 
 var throughto = function(stream)
 {
-    var through = require("through");
+    var through = require("through")
     
     function write(data)
     {
-        stream.write(data.contents);
+        stream.write(data.contents)
     }
 
     function end()
     {
-        stream.end();
+        stream.end()
     }
     
-    return through(write, end);
+    return through(write, end)
 }
 
 server = express();
 
 server.get("/index.js", function(request, response, next)
 {
-    response.set("Content-Type", "text/javascript");
-    buildpipe.scripts().pipe(throughto(response)) //todo!!
+    response.set("Content-Type", "text/javascript")
+    buildpipe.scripts().pipe(throughto(response))
 })
 
 server.get("/index.css", function(request, response, next)
@@ -33,9 +33,9 @@ server.get("/index.css", function(request, response, next)
     buildpipe.styles().pipe(throughto(response))
 })
 
-server.use(express.static("./source"));
+server.use(express.static("./source"))
 
 server.listen(1271, function()
 {
-    console.log("The server is listening.");
-});
+    console.log("The server is listening.")
+})

@@ -2,8 +2,8 @@ var gulp = require("gulp")
 var gulp_sass = require("gulp-sass")
 var gulp_autoprefixer = require("gulp-autoprefixer")
 
-var stream = require("vinyl-source-stream")
-var process = require("child-process-promise")
+var vinyl_buffer = require("vinyl-buffer")
+var vinyl_source = require("vinyl-source-stream")
 
 var browserify = require("browserify")
 var reactify = require("reactify")
@@ -20,7 +20,8 @@ module.exports.scripts = function()
                .transform("reactify")
                .transform("aliasify")
                .bundle()
-               .pipe(stream("index.js"))
+               .pipe(vinyl_source("index.js"))
+               .pipe(vinyl_buffer())
 }
 
 module.exports.styles = function()
