@@ -19,17 +19,17 @@
     "aliasify": "~1.5.0",
     "browserify": "~6.3.3",
     "del": "^1.1.1",
-    "envify": "~3.2.0",
+    "envify": "^3.2.0",
     "express": "~4.10.7",
     "gulp": "~3.8.10",
     "gulp-autoprefixer": "~2.0.0",
+    "gulp-json-transform": "~0.2.0",
     "gulp-sass": "~1.2.4",
     "reactify": "~0.17.1",
     "through": "~2.3.6",
     "uglifyify": "~2.6.0",
-    "vinyl-source-stream": "~1.0.0",
     "vinyl-buffer": "~1.0.0",
-    "gulp-json-transform": "~0.2.0"
+    "vinyl-source-stream": "~1.0.0"
   },
   "window": {
     "title": "Papercut!",
