@@ -1,7 +1,7 @@
 var gulp = require("gulp")
 var gulp_sass = require("gulp-sass")
-var gulp_autoprefixer = require("gulp-autoprefixer")
-var gulp_json = require("gulp-json-transform")
+var gulp_prefixer = require("gulp-autoprefixer")
+var gulp_transjson = require("gulp-json-transform")
 
 var vinyl_buffer = require("vinyl-buffer")
 var vinyl_source = require("vinyl-source-stream")
@@ -29,7 +29,7 @@ module.exports.styles = function()
 {
     return gulp.src("./source/index.scss")
                .pipe(gulp_sass())
-               .pipe(gulp_autoprefixer())
+               .pipe(gulp_prefixer())
 }
 
 module.exports.assets = function()
@@ -40,7 +40,7 @@ module.exports.assets = function()
 module.exports.configs = function(dir)
 {
     return gulp.src("./package.json")
-               .pipe(gulp_json(function(data)
+               .pipe(gulp_transjson(function(data)
                {
                    delete data["aliasify"]
                    delete data["dependencies"]
