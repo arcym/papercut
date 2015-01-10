@@ -19,10 +19,10 @@ var Game = React.createClass({
     render: function() {
         return (
             <GameFrame>
-                <Camera distance={2}>
-                    
+                <Camera parallax={2}>
+                    <img className="backdrop" src="./assets/backdrop1.png"/>
                 </Camera>
-                <Camera distance={1}>
+                <Camera parallax={1}>
                     <World/>
                     <SwordShard/>
                     <Player/>
