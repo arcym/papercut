@@ -9,6 +9,7 @@ var vinyl_source = require("vinyl-source-stream")
 var browserify = require("browserify")
 var reactify = require("reactify")
 var aliasify = require("aliasify")
+var envify = require("envify")
 
 module.exports.markup = function()
 {
@@ -42,9 +43,9 @@ module.exports.configs = function(dir)
     return gulp.src("./package.json")
                .pipe(gulp_transjson(function(data)
                {
-                   delete data["aliasify"]
-                   delete data["dependencies"]
-                   delete data["devDependencies"]
-                   return data
+                    delete data["aliasify"]
+                    delete data["dependencies"]
+                    delete data["devDependencies"]
+                    return data
                }, 2))
 }
