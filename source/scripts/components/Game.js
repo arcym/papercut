@@ -19,7 +19,10 @@ var Game = React.createClass({
     render: function() {
         return (
             <GameFrame>
-                <Camera>
+                <Camera distance={2}>
+                    
+                </Camera>
+                <Camera distance={1}>
                     <World/>
                     <SwordShard/>
                     <Player/>
