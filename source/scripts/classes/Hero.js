@@ -11,6 +11,8 @@ var Hero = function(protohero) {
         }
     }
     
+    this.wrap = 0
+    
     this.jump = 0
     this.maxjump = 5
 }
@@ -58,10 +60,14 @@ Hero.prototype.move = function(movement) {
     this.position.x += movement.x
     this.position.y += movement.y
     
+    // if the hero has moved out of
+    // the world, then wrap around
     if(this.position.x < 0) {
         this.position.x += Game.world.width
+        this.wrap -= 1
     } if(this.position.x >= Game.world.width) {
         this.position.x -= Game.world.width
+        this.wrap += 1
     }
     
     // get the tile that the hero is on

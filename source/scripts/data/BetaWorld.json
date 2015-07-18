@@ -55,7 +55,8 @@
                 },
              "4":
                 {
-                 "color":"rgb(127, 127, 127)"
+                 "color":"rgb(238, 238, 238)",
+                 "item":"shuriken"
                 }
             },
          "tilewidth":32
