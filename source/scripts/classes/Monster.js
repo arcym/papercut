@@ -12,7 +12,7 @@ Monster.prototype.move = function() {
     if(Game.world.getTile({
         "x": this.position.x + this.movement.x,
         "y": this.position.y + this.movement.y
-    }).collision == false) {
+    }).blocks == false) {
         this.position.x += this.movement.x
         this.position.y += this.movement.y
     }
@@ -23,12 +23,12 @@ Monster.prototype.move = function() {
     if(Game.world.getTile({
         "x": this.position.x + this.movement.x,
         "y": this.position.y + this.movement.y
-    }).collision == true) {
+    }).blocks == true) {
         this.movement.x *= -1
     } else if(Game.world.getTile({
         "x": this.position.x + this.movement.x,
         "y": this.position.y + this.movement.y + 1
-    }).collision == false) {
+    }).blocks == false) {
         this.movement.x *= -1
     }
     

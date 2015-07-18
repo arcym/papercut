@@ -9,17 +9,18 @@ var World = function(tiledmap) {
             this.tiles[x + "x" + y] = {
                 position: {"x": x, "y": y},
                 color: tile.properties.color,
-                collision: !!tile.properties.collision,
                 saves: !!tile.properties.saves,
+                blocks: !!tile.properties.blocks,
+                kills: !!tile.properties.kills,
             }
         }
     }
 }
 
 World.prototype.getTile = function(position) {
-    return this.tiles[position.x + "x" + position.y] || {
-        "position": position, "kills": position.y >= this.height
-    }
+    var x = position.x % this.width
+    var y = position.y % this.height
+    return this.tiles[x + "x" + y] || {}
 }
 
 module.exports = World

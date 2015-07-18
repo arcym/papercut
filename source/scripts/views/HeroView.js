@@ -9,9 +9,11 @@ var HeroView = React.createClass({
             "width": "1em",
             "height": "1em",
             "position": "absolute",
+            "backgroundColor": "green",
+            "transitionDuration": "0.15s",
+            "transitionProperty": "left top",
             "top": this.props.data.position.y + "em",
             "left": this.props.data.position.x + "em",
-            "backgroundColor": "red",
         }
     }
 })

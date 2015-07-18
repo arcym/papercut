@@ -10,11 +10,22 @@ var Hero = function(protohero) {
             "y": protohero.position.y || 0
         }
     }
+    
+    this.jump = 0
+    this.maxjump = 5
 }
 
 Hero.prototype.move = function(movement) {
+    // expand each movement
+    // with some default values
     movement.x = movement.x || 0
     movement.y = movement.y || 0
+    
+    // if the hero has
+    // jumped, then do gravity
+    if(this.jump == this.maxjump) {
+        movement.y = +1
+    }
     
     // if the tile to the left or right
     // of the hero has collision, stop
@@ -22,7 +33,7 @@ Hero.prototype.move = function(movement) {
     if(Game.world.getTile({
         "x": this.position.x + movement.x,
         "y": this.position.y
-    }).collision == true) {
+    }).blocks == true) {
         movement.x = 0
     }
     
@@ -32,7 +43,7 @@ Hero.prototype.move = function(movement) {
     if(Game.world.getTile({
         "x": this.position.x + movement.x,
         "y": this.position.y + movement.y
-    }).collision == true) {
+    }).blocks == true) {
         movement.y = 0
     }
     
@@ -46,6 +57,12 @@ Hero.prototype.move = function(movement) {
     // move the hero
     this.position.x += movement.x
     this.position.y += movement.y
+    
+    if(this.position.x < 0) {
+        this.position.x += Game.world.width
+    } if(this.position.x >= Game.world.width) {
+        this.position.x -= Game.world.width
+    }
     
     // get the tile that the hero is on
     var tile = Game.world.getTile({
@@ -77,15 +94,34 @@ Hero.prototype.move = function(movement) {
         }
     }
     
-    // todo: check for collision with monsters
-    // todo: jumping or falling
-    // todo: begin falling when walk off ledge
+    // if the hero is moving
+    // upwards, then increase the jump
+    if(movement.y < 0) {
+        if(this.jump < this.maxjump) {
+            this.jump += 1
+        }
+    }
+    
+    // if the hero is moving
+    // horizontally, then kill the jump
+    if(movement.x != 0
+    && movement.y >= 0) {
+        this.jump = this.maxjump
+    }
+    
+    // if the tile below the hero is a
+    // block, then the hero has landed
+    if(Game.world.getTile({
+        "x": this.position.x,
+        "y": this.position.y + 1
+    }).blocks == true) {
+        this.jump = 0
+    }
     
     // prompt all the monsters
     // to also move themselves
     for(var key in Game.monsters) {
-        var monster = Game.monsters[key]
-        monster.move()
+        Game.monsters[key].move()
     }
 }
 
@@ -98,5 +134,11 @@ Hero.prototype.save = function() {
     this.saved.position.x = this.position.x
     this.saved.position.y = this.position.y
 }
+
+// when walking left or right during
+// a jump, the hero won't fall for a turn
+
+// when stuck vertically, you can
+// still move diagonally.
 
 module.exports = Hero

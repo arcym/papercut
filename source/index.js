@@ -9,23 +9,10 @@ var TiledMaps = require("<scripts>/data/TiledMaps")
 
 window.Game = {
     "hero": new Hero({
-        "position": {"x": 5, "y": 5}
+        "position": {"x": 5, "y": 151}
     }),
-    "world": new World(TiledMaps.alpha),
-    "monsters": {
-        "james": new Monster({
-            "position": {"x": 19, "y": 13},
-            "movement": {"x": -1}
-        }),
-        "jack": new Monster({
-            "position": {"x": 6, "y": 10},
-            "movement": {"x": +1}
-        }),
-        "john": new Monster({
-            "position": {"x": 10, "y": 4},
-            "movement": {"x": -1}
-        }),
-    }
+    "world": new World(TiledMaps.beta),
+    "monsters": {}
 }
 
 var GameStore = Phlux.createStore({
@@ -44,7 +31,7 @@ var GameView = React.createClass({
     ],
     render: function() {
         return (
-            <FrameView aspect-ratio="20x15">
+            <FrameView aspect-ratio="15x17">
                 <CameraView data={this.state.game}>
                     <WorldView data={this.state.game.world}/>
                     <HeroView data={this.state.game.hero}/>
