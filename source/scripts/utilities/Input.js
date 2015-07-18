@@ -17,11 +17,9 @@ var Input = {
     },
     state: {},
     doKeyDown: function(key) {
-        if(!this.state[key]) {
-            this.state[key] = true
-            for(var index in this.func.onKeyDown[key]) {
-                this.func.onKeyDown[key][index]()
-            }
+        this.state[key] = true
+        for(var index in this.func.onKeyDown[key]) {
+            this.func.onKeyDown[key][index]()
         }
     },
     doKeyUp: function(key) {

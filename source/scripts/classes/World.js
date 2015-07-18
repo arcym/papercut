@@ -10,13 +10,16 @@ var World = function(tiledmap) {
                 position: {"x": x, "y": y},
                 color: tile.properties.color,
                 collision: !!tile.properties.collision,
+                saves: !!tile.properties.saves,
             }
         }
     }
 }
 
 World.prototype.getTile = function(position) {
-    return this.tiles[position.x + "x" + position.y]
+    return this.tiles[position.x + "x" + position.y] || {
+        "position": position, "kills": position.y >= this.height
+    }
 }
 
 module.exports = World

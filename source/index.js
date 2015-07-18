@@ -4,21 +4,26 @@ window.Phlux = require("phlux")
 var Hero = require("<scripts>/classes/Hero")
 var World = require("<scripts>/classes/World")
 var Monster = require("<scripts>/classes/Monster")
+
 var TiledMaps = require("<scripts>/data/TiledMaps")
 
 window.Game = {
-    "hero": new Hero(),
+    "hero": new Hero({
+        "position": {"x": 5, "y": 5}
+    }),
     "world": new World(TiledMaps.alpha),
     "monsters": {
+        "jack": new Monster({
+            "position": {"x": 6, "y": 10},
+            "movement": {"x": +1}
+        }),
+        "james": new Monster({
+            "position": {"x": 19, "y": 13},
+            "movement": {"x": -1}
+        }),
         "john": new Monster({
-            "position": {
-                "x": 10,
-                "y": 4
-            },
-            "movement": {
-                "x": -1,
-                "y": 0
-            }
+            "position": {"x": 10, "y": 4},
+            "movement": {"x": -1}
         }),
     }
 }
@@ -30,6 +35,7 @@ var GameStore = Phlux.createStore({
 var HeroView = require("<scripts>/views/HeroView")
 var WorldView = require("<scripts>/views/WorldView")
 var MonsterView = require("<scripts>/views/MonsterView")
+var CameraView = require("<scripts>/views/Cameraview")
 var FrameView = require("<scripts>/views/FrameView")
 
 var GameView = React.createClass({
@@ -39,9 +45,11 @@ var GameView = React.createClass({
     render: function() {
         return (
             <FrameView aspect-ratio="20x15">
-                <WorldView data={this.state.game.world}/>
-                <HeroView data={this.state.game.hero}/>
-                {this.renderMonsters()}
+                <CameraView data={this.state.game}>
+                    <WorldView data={this.state.game.world}/>
+                    <HeroView data={this.state.game.hero}/>
+                    {this.renderMonsters()}
+                </CameraView>
             </FrameView>
         )
     },

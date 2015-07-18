@@ -1,9 +1,11 @@
 var Monster = function(protomonster) {
     var monster = this
-    
     for(var key in protomonster) {
         monster[key] = protomonster[key]
     }
+    
+    this.movement.x = this.movement.x || 0
+    this.movement.y = this.movement.y || 0
 }
 
 Monster.prototype.move = function() {
