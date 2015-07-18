@@ -16,10 +16,7 @@ var World = function(tiledmap) {
 }
 
 World.prototype.getTile = function(position) {
-    var x = position.x || 0
-    var y = position.y || 0
-    
-    return this.tiles[x + "x" + y]
+    return this.tiles[position.x + "x" + position.y]
 }
 
 module.exports = World

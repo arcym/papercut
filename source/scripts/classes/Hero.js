@@ -8,24 +8,33 @@ Hero.prototype.move = function(movement) {
     movement.x = movement.x || 0
     movement.y = movement.y || 0
     
-    if(Game.world.getTile({
+    var tile = Game.world.getTile({
         "x": this.position.x + movement.x,
         "y": this.position.y
-    }).collision) {
+    })
+    if(tile.collision == true) {
         movement.x = 0
     }
     
-    if(Game.world.getTile({
+    var tile = Game.world.getTile({
         "x": this.position.x + movement.x,
         "y": this.position.y + movement.y
-    }).collision == true) {
+    })
+    if(tile.collision == true) {
         movement.y = 0
     }
     
-    console.log(movement)
+    if(movement.x == 0
+    && movement.y == 0) {
+        return
+    }
     
     this.position.x += movement.x
     this.position.y += movement.y
+    
+    for(var key in Game.monsters) {
+        Game.monsters[key].move()
+    }
 }
 
 module.exports = Hero
