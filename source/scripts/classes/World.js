@@ -1,3 +1,6 @@
+var Item = require("<scripts>/classes/Item")
+var Monster = require("<scripts>/classes/Monster")
+
 var World = function(tiledmap) {
     this.width = tiledmap.width
     this.height = tiledmap.height
@@ -7,11 +10,26 @@ var World = function(tiledmap) {
         for(var y = 0; y < this.height; y++) {
             var tile = tiledmap.layers[0].tiles[x + "x" + y]
             this.tiles[x + "x" + y] = {
-                position: {"x": x, "y": y},
-                color: tile.properties.color,
-                saves: !!tile.properties.saves,
-                blocks: !!tile.properties.blocks,
-                kills: !!tile.properties.kills,
+                "position": {"x": x, "y": y},
+                "color": tile.properties.color,
+                "saves": !!tile.properties.saves,
+                "blocks": !!tile.properties.blocks,
+                "kills": !!tile.properties.kills,
+            }
+            if(!!tile.properties.item) {
+                Game.items[x + "x" + y] = new Item({
+                    "type": tile.properties.item,
+                    "position": {"x": x, "y": y},
+                })
+            }
+            if(!!tile.properties.monster) {
+                var key = ShortID.generate()
+                Game.monsters[key] = new Monster({
+                    "type": tile.properties.monster,
+                    "position": {"x": x, "y": y},
+                    "movement": {"x": +1},
+                    "key": key
+                })
             }
         }
     }

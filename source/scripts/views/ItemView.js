@@ -1,4 +1,4 @@
-var MonsterView = React.createClass({
+var ItemView = React.createClass({
     render: function() {
         return (
             <div style={this.renderStyle()}/>
@@ -9,13 +9,11 @@ var MonsterView = React.createClass({
             "width": "1em",
             "height": "1em",
             "position": "absolute",
-            "backgroundColor": "red",
-            "transitionDuration": "0.5s",
-            "transitionProperty": "left top",
             "top": this.props.data.position.y + "em",
             "left": this.props.data.position.x + "em",
+            "backgroundColor": "#888"
         }
     }
 })
 
-module.exports = MonsterView
+module.exports = ItemView

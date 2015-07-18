@@ -1,5 +1,6 @@
 window.React = require("react")
 window.Phlux = require("phlux")
+window.ShortID = require("shortid")
 
 var Hero = require("<scripts>/classes/Hero")
 var World = require("<scripts>/classes/World")
@@ -8,12 +9,14 @@ var Monster = require("<scripts>/classes/Monster")
 var TiledMaps = require("<scripts>/data/TiledMaps")
 
 window.Game = {
-    "hero": new Hero({
-        "position": {"x": 5, "y": 151}
-    }),
-    "world": new World(TiledMaps.beta),
-    "monsters": {}
+    "hero": null,
+    "world": null,
+    "monsters": {},
+    "items": {},
 }
+
+Game.world = new World(TiledMaps.beta)
+Game.hero = new Hero({"position": {"x": 5, "y": 151}})
 
 var GameStore = Phlux.createStore({
     "data": Game
@@ -21,9 +24,11 @@ var GameStore = Phlux.createStore({
 
 var HeroView = require("<scripts>/views/HeroView")
 var WorldView = require("<scripts>/views/WorldView")
+var ItemView = require("<scripts>/views/ItemView")
 var MonsterView = require("<scripts>/views/MonsterView")
 var CameraView = require("<scripts>/views/Cameraview")
 var FrameView = require("<scripts>/views/FrameView")
+var ForEach = require("<scripts>/views/ForEach")
 
 var GameView = React.createClass({
     mixins: [
@@ -35,20 +40,11 @@ var GameView = React.createClass({
                 <CameraView data={this.state.game}>
                     <WorldView data={this.state.game.world}/>
                     <HeroView data={this.state.game.hero}/>
-                    {this.renderMonsters()}
+                    <ForEach data={this.state.game.items} view={ItemView}/>
+                    <ForEach data={this.state.game.monsters} view={MonsterView}/>
                 </CameraView>
             </FrameView>
         )
-    },
-    renderMonsters: function() {
-        var renderings = []
-        for(var key in this.state.game.monsters) {
-            var data = this.state.game.monsters[key]
-            renderings.push(
-                <MonsterView key={key} data={data}/>
-            )
-        }
-        return renderings
     }
 })
 

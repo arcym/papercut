@@ -100,6 +100,14 @@ Hero.prototype.move = function(movement) {
         }
     }
     
+    // if the hero has moved onto
+    // an item, then get the item
+    if(!!Game.items[this.position.x + "x" + this.position.y]) {
+        var item = Game.items[this.position.x + "x" + this.position.y]
+        delete Game.items[this.position.x + "x" + this.position.y]
+        console.log(item.type)
+    }
+    
     // if the hero is moving
     // upwards, then increase the jump
     if(movement.y < 0) {
