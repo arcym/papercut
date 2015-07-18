@@ -1,24 +1,14 @@
-*
+@import "./styles/fonts.scss";
+@import "./styles/defaults.scss";
+@import "./styles/frame.scss";
+
+html
 {
-    margin: 0px;
-}
+    font-family: goldfish;
+    background-color: #111;
 
-@import "./styles/references/Fonts.scss";
-@import "./styles/references/Colors.scss";
-@import "./styles/references/Sizes.scss";
-
-@import "./styles/components/Camera.scss";
-@import "./styles/components/GameFrame.scss";
-@import "./styles/components/LoopStatus.scss";
-@import "./styles/components/FullscreenButton.scss";
-
-@import "./styles/components/Player.scss";
-@import "./styles/components/World.scss";
-@import "./styles/components/World.scss";
-@import "./styles/components/SwordShard.scss";
-
-:root
-{
-    background-color: $black;
-    font-family: goldfish, monospace;
+    #frame
+    {
+    	background-color: #EEE;
+    }
 }
