@@ -17,6 +17,9 @@ Monster.prototype.move = function() {
         this.position.y += this.movement.y
     }
     
+    // if the monster is about to move
+    // into a wall or off a ledge, then
+    // reverse direction
     if(Game.world.getTile({
         "x": this.position.x + this.movement.x,
         "y": this.position.y + this.movement.y
@@ -27,6 +30,13 @@ Monster.prototype.move = function() {
         "y": this.position.y + this.movement.y + 1
     }).collision == false) {
         this.movement.x *= -1
+    }
+    
+    // if the monster has moved
+    // onto the hero, kill the hero
+    if(this.position.x == Game.hero.position.x
+    && this.position.y == Game.hero.position.y) {
+        Game.hero.kill()
     }
 }
 

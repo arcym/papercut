@@ -47,40 +47,56 @@ Hero.prototype.move = function(movement) {
     this.position.x += movement.x
     this.position.y += movement.y
     
-    // get the tile
+    // get the tile that the hero is on
     var tile = Game.world.getTile({
         "x": this.position.x,
         "y": this.position.y
     })
     
     // if the hero has moved onto
-    // the a savepoint, then save
+    // the a saving tile, then save
     if(tile.saves == true) {
-        this.saved.position.x = this.position.x
-        this.saved.position.y = this.position.y
+        this.save()
     }
     
     // if the hero has moved onto
-    // off a spike, then die
+    // off a killing tile, then kill
     if(tile.kills == true) {
-        this.die()
+        this.kill()
         return
     }
     
-    //check for collision with monsters
-    //jumping or falling
-    //begin falling when walk off ledge
+    // if the hero has moved
+    // onto a monster, then kill
+    for(var key in Game.monsters) {
+        var monster = Game.monsters[key]
+        if(monster.position.x == this.position.x
+        && monster.position.y == this.position.y) {
+            this.kill()
+            return
+        }
+    }
+    
+    // todo: check for collision with monsters
+    // todo: jumping or falling
+    // todo: begin falling when walk off ledge
     
     // prompt all the monsters
     // to also move themselves
     for(var key in Game.monsters) {
-        Game.monsters[key].move()
+        var monster = Game.monsters[key]
+        monster.move()
     }
 }
 
-Hero.prototype.die = function() {
+Hero.prototype.kill = function() {
     this.position.x = this.saved.position.x
     this.position.y = this.saved.position.y
+}
+
+Hero.prototype.save = function() {
+    this.saved.position.x = this.position.x
+    this.saved.position.y = this.position.y
 }
 
 module.exports = Hero

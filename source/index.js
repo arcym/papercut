@@ -13,13 +13,13 @@ window.Game = {
     }),
     "world": new World(TiledMaps.alpha),
     "monsters": {
-        "jack": new Monster({
-            "position": {"x": 6, "y": 10},
-            "movement": {"x": +1}
-        }),
         "james": new Monster({
             "position": {"x": 19, "y": 13},
             "movement": {"x": -1}
+        }),
+        "jack": new Monster({
+            "position": {"x": 6, "y": 10},
+            "movement": {"x": +1}
         }),
         "john": new Monster({
             "position": {"x": 10, "y": 4},
