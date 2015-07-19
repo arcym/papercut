@@ -46,6 +46,13 @@ var MonsterMovement = {
                 "direction": this.direction,
             })
         }
+        
+        // if the monster has moved
+        // onto the hero, kill the hero
+        if(this.position.x == Game.hero.position.x
+        && this.position.y == Game.hero.position.y) {
+            Game.hero.kill()
+        }
     },
     "rocket": function() {
         this.direction = this.direction || +1
@@ -58,6 +65,13 @@ var MonsterMovement = {
         } else {
             delete Game.monsters[this.key]
         }
+        
+        // if the monster has moved
+        // onto the hero, kill the hero
+        if(this.position.x == Game.hero.position.x
+        && this.position.y == Game.hero.position.y) {
+            Game.hero.kill()
+        }
     },
     "piano": function() {
         this.direction = this.direction || +2
@@ -66,12 +80,28 @@ var MonsterMovement = {
             if(Game.world.getTile({
                 "x": this.position.x,
                 "y": this.position.y + 1
-            }).blocks == false
-            && Game.world.getTile({
-                "x": this.position.x,
-                "y": this.position.y + 2
             }).blocks == false) {
-                this.position.y += 2
+                this.position.y += 1
+                
+                if(this.position.x == Game.hero.position.x
+                && this.position.y == Game.hero.position.y) {
+                    Game.hero.kill()
+                }
+                
+                if(Game.world.getTile({
+                    "x": this.position.x,
+                    "y": this.position.y + 1
+                }).blocks == false) {
+                    this.position.y += 1
+                    
+            
+                    if(this.position.x == Game.hero.position.x
+                    && this.position.y == Game.hero.position.y) {
+                        Game.hero.kill()
+                    }
+                } else {
+                    this.direction = -1
+                }
             } else {
                 this.direction = -1
             }
@@ -85,7 +115,7 @@ var MonsterMovement = {
                 this.direction = +2
             }
         }
-    },
+    }
 }
 
 var Monster = function(protomonster) {

@@ -16,7 +16,7 @@ window.Game = {
 }
 
 Game.world = new World(TiledMaps.beta)
-Game.hero = new Hero({"position": {"x": 5, "y": 151, "y": 129}})
+Game.hero = new Hero({"position": {"x": 4, "y": 151}})
 
 var GameStore = Phlux.createStore({
     "data": Game
