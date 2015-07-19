@@ -17,7 +17,7 @@ var Hero = function(protohero) {
     this.maxjump = 5
     
     this.score = 0
-    this.time = 240
+    this.time = 10 * 60
 }
 
 Hero.prototype.move = function(movement) {

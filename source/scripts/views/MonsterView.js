@@ -9,7 +9,7 @@ var MonsterView = React.createClass({
             "width": "1em",
             "height": "1em",
             "position": "absolute",
-            "backgroundColor": "red",
+            "backgroundColor": "#C00",
             "transitionDuration": "0.5s",
             "transitionProperty": "left top",
             "top": this.props.data.position.y + "em",

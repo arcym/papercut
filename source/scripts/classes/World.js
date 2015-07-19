@@ -26,8 +26,8 @@ var World = function(tiledmap) {
                 var key = ShortID.generate()
                 Game.monsters[key] = new Monster({
                     "type": tile.properties.monster,
+                    "direction": parseInt(tile.properties.direction),
                     "position": {"x": x, "y": y},
-                    "movement": {"x": +1},
                     "key": key
                 })
             }
