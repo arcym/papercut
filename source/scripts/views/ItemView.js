@@ -6,12 +6,17 @@ var ItemView = React.createClass({
     },
     renderStyle: function() {
         return {
-            "width": "1em",
-            "height": "1em",
+            "width": "0.75em",
+            "height": "0.75em",
             "position": "absolute",
-            "top": this.props.data.position.y + "em",
-            "left": this.props.data.position.x + "em",
-            "backgroundColor": "#888"
+            "borderRadius": "0.1em",
+            "animationName": "float",
+            "animationDuration": "5s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "ease-in-out",
+            "backgroundColor": "#C00",
+            "top": this.props.data.position.y + 0.125 +"em",
+            "left": this.props.data.position.x + 0.125 +"em",
         }
     }
 })

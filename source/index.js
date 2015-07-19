@@ -28,7 +28,8 @@ var ItemView = require("<scripts>/views/ItemView")
 var MonsterView = require("<scripts>/views/MonsterView")
 var CameraView = require("<scripts>/views/Cameraview")
 var FrameView = require("<scripts>/views/FrameView")
-var ForEach = require("<scripts>/views/ForEach")
+var ForEachView = require("<scripts>/views/ForEachView")
+var InterfaceView = require("<scripts>/views/InterfaceView")
 
 var GameView = React.createClass({
     mixins: [
@@ -40,9 +41,10 @@ var GameView = React.createClass({
                 <CameraView data={this.state.game}>
                     <WorldView data={this.state.game.world}/>
                     <HeroView data={this.state.game.hero}/>
-                    <ForEach data={this.state.game.items} view={ItemView}/>
-                    <ForEach data={this.state.game.monsters} view={MonsterView}/>
+                    <ForEachView data={this.state.game.items} view={ItemView}/>
+                    <ForEachView data={this.state.game.monsters} view={MonsterView}/>
                 </CameraView>
+                <InterfaceView data={this.state.game.hero}/>
             </FrameView>
         )
     }

@@ -15,6 +15,9 @@ var Hero = function(protohero) {
     
     this.jump = 0
     this.maxjump = 5
+    
+    this.score = 0
+    this.time = 240
 }
 
 Hero.prototype.move = function(movement) {
@@ -105,7 +108,7 @@ Hero.prototype.move = function(movement) {
     if(!!Game.items[this.position.x + "x" + this.position.y]) {
         var item = Game.items[this.position.x + "x" + this.position.y]
         delete Game.items[this.position.x + "x" + this.position.y]
-        console.log(item.type)
+        this.score += 10
     }
     
     // if the hero is moving
@@ -137,11 +140,17 @@ Hero.prototype.move = function(movement) {
     for(var key in Game.monsters) {
         Game.monsters[key].move()
     }
+    
+    this.time -= 1
 }
 
 Hero.prototype.kill = function() {
     this.position.x = this.saved.position.x
     this.position.y = this.saved.position.y
+    this.score -= 2
+    if(this.score < 0) {
+        this.score = 0
+    }
 }
 
 Hero.prototype.save = function() {
