@@ -16,11 +16,22 @@ var HeroView = React.createClass({
             "width": "1em",
             "height": "1em",
             "position": "absolute",
-            "backgroundColor": "green",
             "transitionDuration": "0.15s",
             "transitionProperty": "left top",
             "top": this.props.data.position.y + "em",
             "left": this.props.data.position.x + delta + "em",
+            "backgroundImage": "url(" + this.getImage() + ")",
+            "backgroundRepeat": "no-repeat",
+            "backgroundSize": "100%",
+        }
+    },
+    getImage: function() {
+        if(this.props.data.jump == 0) {
+            return "./assets/images/dude/jumpdude.png"
+        } else if(this.props.data.jump == this.props.data.maxjump) {
+            return "./assets/images/dude/jumpdude_fall.png"
+        } else {
+            return "./assets/images/dude/jumpdude_jumpup.png"
         }
     }
 })

@@ -9,11 +9,16 @@ var MonsterView = React.createClass({
             "width": "1em",
             "height": "1em",
             "position": "absolute",
-            "backgroundColor": "#C00",
             "transitionDuration": "0.5s",
             "transitionProperty": "left top",
             "top": this.props.data.position.y + "em",
             "left": this.props.data.position.x + "em",
+            "backgroundImage": "url(" + this.props.data.image + ")",
+            "backgroundRepeat": "no-repeat",
+            "backgroundSize": "100%",
+            "zIndex": !!this.props.data.depth ? this.props.data.depth : null,
+            "transform": this.props.data.direction != 0 ? "scaleX(" + this.props.data.direction + ")": null
+            
         }
     }
 })

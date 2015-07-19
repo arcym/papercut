@@ -126,6 +126,27 @@ var Monster = function(protomonster) {
     this.timer = 0
     
     this.move = MonsterMovement[this.type]
+    
+    if(this.type == "turtle") {
+        this.image = "./assets/images/monsters/turtle_left.png"
+    } else if(this.type == "piano") {
+        this.image = "./assets/images/monsters/stumper_down.png"
+    } else if(this.type == "turret") {
+        if(this.direction == +1) {
+            this.image = "./assets/images/monsters/shooter_right.png"
+        } else if(this.direction == -1) {
+            this.image = "./assets/images/monsters/shooter_left.png"
+        }
+    } else if(this.type == "rocket") {
+        if(this.direction == +1) {
+            this.image = "./assets/images/monsters/lazzzzer_right.png"
+            this.depth = -1
+        } else if(this.direction == -1) {
+            this.image = "./assets/images/monsters/lazzzzer_left.png"
+            this.depth = -1
+        }
+    }
+    //"shooter_left.png" "shooter_right.png"
 }
 
 module.exports = Monster

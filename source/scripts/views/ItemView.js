@@ -15,6 +15,7 @@ var ItemView = React.createClass({
             "animationIterationCount": "infinite",
             "animationTimingFunction": "ease-in-out",
             "backgroundColor": "rgb(34, 117, 76)",
+            "backgroundColor": "#C00",
             "top": this.props.data.position.y + 0.125 +"em",
             "left": this.props.data.position.x + 0.125 +"em",
         }

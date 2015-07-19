@@ -1,6 +1,6 @@
 {
   "name": "papercut",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A turn-based sidescrolling platformer about ninjas.",
   "repository": {
     "type": "git",

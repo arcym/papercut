@@ -18,7 +18,7 @@ window.Game = {
 }
 
 Game.world = new World(TiledMaps.beta)
-Game.hero = new Hero({"position": {"x": 4, "y": 15}})
+Game.hero = new Hero({"position": {"x": 4, "y": 151}})
 Game.messages.push(new Message({
     "position": {"x": 2, "y": 148},
     "text": "MOVE WASDQE"
@@ -55,6 +55,11 @@ var GameView = React.createClass({
                 <InterfaceView data={this.state.game.hero}/>
             </FrameView>
         )
+    },
+    componentDidMount: function() {
+        var music = new Audio("./assets/music/spacetime.mp3")
+        music.loop = true
+        music.play()
     }
 })
 

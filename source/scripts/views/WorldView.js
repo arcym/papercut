@@ -12,7 +12,9 @@ var WorldView = React.createClass({
     renderStyles: function() {
         return {
             width: this.props.data.width + "em",
-            height: this.props.data.height + "em"
+            height: this.props.data.height + "em",
+            zIndex: -2,
+            position: "relative"
         }
     },
     renderTiles: function() {
