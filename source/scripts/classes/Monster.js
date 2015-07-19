@@ -82,19 +82,15 @@ var MonsterMovement = {
                 "y": this.position.y + 1
             }).blocks == false) {
                 this.position.y += 1
-                
                 if(this.position.x == Game.hero.position.x
                 && this.position.y == Game.hero.position.y) {
                     Game.hero.kill()
                 }
-                
                 if(Game.world.getTile({
                     "x": this.position.x,
                     "y": this.position.y + 1
                 }).blocks == false) {
                     this.position.y += 1
-                    
-            
                     if(this.position.x == Game.hero.position.x
                     && this.position.y == Game.hero.position.y) {
                         Game.hero.kill()

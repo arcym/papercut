@@ -18,6 +18,8 @@ var Hero = function(protohero) {
     
     this.score = 0
     this.time = 10 * 60
+    
+    this.hasWon = false
 }
 
 Hero.prototype.move = function(movement) {
@@ -141,7 +143,18 @@ Hero.prototype.move = function(movement) {
         Game.monsters[key].move()
     }
     
-    this.time -= 1
+    if(!this.hasWon) {
+        this.time -= 1
+    }
+    
+    if(this.position.y < 16) {
+        this.hasWon = true
+        Game.messages[1] = {
+            "position": {"x": 5, "y": 4},
+            "text": "You win!!",
+            "bold": true
+        }
+    }
 }
 
 Hero.prototype.kill = function() {

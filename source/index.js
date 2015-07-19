@@ -5,6 +5,7 @@ window.ShortID = require("shortid")
 var Hero = require("<scripts>/classes/Hero")
 var World = require("<scripts>/classes/World")
 var Monster = require("<scripts>/classes/Monster")
+var Message = require("<scripts>/classes/Message")
 
 var TiledMaps = require("<scripts>/data/TiledMaps")
 
@@ -13,10 +14,15 @@ window.Game = {
     "world": null,
     "monsters": {},
     "items": {},
+    "messages": [],
 }
 
 Game.world = new World(TiledMaps.beta)
-Game.hero = new Hero({"position": {"x": 4, "y": 151}})
+Game.hero = new Hero({"position": {"x": 4, "y": 15}})
+Game.messages.push(new Message({
+    "position": {"x": 2, "y": 148},
+    "text": "MOVE WASDQE"
+}))
 
 var GameStore = Phlux.createStore({
     "data": Game
@@ -30,6 +36,7 @@ var CameraView = require("<scripts>/views/Cameraview")
 var FrameView = require("<scripts>/views/FrameView")
 var ForEachView = require("<scripts>/views/ForEachView")
 var InterfaceView = require("<scripts>/views/InterfaceView")
+var MessageView = require("<scripts>/views/MessageView")
 
 var GameView = React.createClass({
     mixins: [
@@ -40,6 +47,7 @@ var GameView = React.createClass({
             <FrameView aspect-ratio="15x17">
                 <CameraView data={this.state.game}>
                     <WorldView data={this.state.game.world}/>
+                    <ForEachView data={this.state.game.messages} view={MessageView}/>
                     <HeroView data={this.state.game.hero}/>
                     <ForEachView data={this.state.game.items} view={ItemView}/>
                     <ForEachView data={this.state.game.monsters} view={MonsterView}/>
